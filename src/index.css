@@ -1,11 +1,34 @@
 @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  
-body{
-  background-color: #f9fafb;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
 }
-  .react-tel-input .form-control{
-    width: 100% !important;
-    height: 42px !important;
-  }
+body {
+  background-color: #f9fafb;
+  
+}
+.react-tel-input .form-control {
+  width: 100% !important;
+  height: 42px !important;
+}
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.cus-backdrop-blur {
+  --tw-backdrop-blur: blur(2px);
+  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness)
+    var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale)
+    var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert)
+    var(--tw-backdrop-opacity) var(--tw-backdrop-saturate)
+    var(--tw-backdrop-sepia);
+}

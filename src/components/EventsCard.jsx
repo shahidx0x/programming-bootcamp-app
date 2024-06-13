@@ -8,20 +8,27 @@ import {
   IconTableColumn,
 } from "@tabler/icons-react";
 import { BentoGrid, BentoGridItem } from "./ui/bento-grid";
+import { Link } from "react-router-dom";
 export function EventsCard() {
   return (
-    <BentoGrid className="">
-      {items.map((item, i) => (
-        <BentoGridItem
-          key={i}
-          title={item.title}
-          description={item.description}
-          header={item.header}
-          icon={item.icon}
-          className={i === 3 || i === 6 ? "md:col-span-2" : ""}
-        />
-      ))}
-    </BentoGrid>
+    <div id="events">
+      <BentoGrid className="">
+        {items.map((item, i) => (
+          <Link
+            className={i === 3 || i === 6 ? "md:col-span-2" : ""}
+            key={i}
+            to="/event/details"
+          >
+            <BentoGridItem
+              title={item.title}
+              description={item.description}
+              header={item.header}
+              icon={item.icon}
+            />
+          </Link>
+        ))}
+      </BentoGrid>
+    </div>
   );
 }
 const Skeleton = () => (

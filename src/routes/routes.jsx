@@ -1,4 +1,5 @@
 import MainLayout from "@/layouts/MainLayout";
+import { EventDetails } from "@/pages/EventDetails";
 import Home from "@/pages/Home";
 
 import Login from "@/shared/Login";
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Registration />,
+      },
+      {
+        path: "/event/details",
+        element: <EventDetails />,
       },
     ],
   },

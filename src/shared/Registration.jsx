@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+
 
 const Registration = () => {
   const [phone, setPhone] = useState("");
