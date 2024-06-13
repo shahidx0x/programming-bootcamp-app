@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const Registration = () => {
   const [phone, setPhone] = useState("");
   return (
-    <div className="flex justify-center w-screen h-screen border-r-8 rounded-xl">
+    <div className="flex justify-center items-center h-full border-r-8 rounded-xl">
       <div className="flex flex-col p-6 rounded-md sm:p-10 bg-gray-50 text-gray-800 min-w-96 w-5/12 border-b-8 border-l-4 border-t-2 border-r rounded-xl">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Sign up</h1>
@@ -65,7 +65,6 @@ const Registration = () => {
                 country={"us"}
                 value={phone}
                 onChange={(phone) => setPhone(phone)}
-             
               />
               <div
                 data-lastpass-icon-root=""
@@ -147,12 +146,9 @@ const Registration = () => {
           </div>
           <div className="space-y-2">
             <div>
-              <Button
-                type="button"
-                className="w-full px-8 py-3 font-semibold rounded-md  text-gray-50"
-              >
+              <button className="shadow-[0_0_0_3px_#000000_inset] w-full px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 hover:bg-black hover:text-white">
                 Register
-              </Button>
+              </button>
             </div>
             <p className="px-6 text-sm text-center text-gray-600">
               Have an account yet?
