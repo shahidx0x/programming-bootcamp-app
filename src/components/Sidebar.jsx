@@ -1,10 +1,17 @@
 import { Home, ListCollapse } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteToken } from "@/utils/localstorage";
+import { clearUser } from "@/redux/slices/authSlice";
 
 const UserSidebar = () => {
   const location = useLocation();
+  const user = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigateTo = useNavigate();
+  console.log(user);
   const [current, setCurrent] = useState("#home");
   useEffect(() => {
     setCurrent(location.hash);
@@ -90,18 +97,37 @@ const UserSidebar = () => {
               </a>
             </li>
           </ul> */}
-          <Link to="/login">
-            {/* <Button className="bg-black w-full">Login</Button> */}
-            <button className="shadow-[0_0_0_3px_#000000_inset] w-full px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
-              Login
-            </button>
-          </Link>
 
-          <Link to="/registration">
-            <button className="shadow-[0_0_0_3px_#000000_inset] w-full px-6 py-2 mt-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
-              Registration
-            </button>
-          </Link>
+          <div>
+            {!user.isAuthenticated && (
+              <>
+                <Link to="/login">
+                  <button className="shadow-[0_0_0_3px_#000000_inset] w-full px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+                    Login
+                  </button>
+                </Link>
+
+                <Link to="/registration">
+                  <button className="shadow-[0_0_0_3px_#000000_inset] w-full px-6 py-2 mt-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+                    Registration
+                  </button>
+                </Link>
+              </>
+            )}
+
+            {user.isAuthenticated && (
+              <button
+                className="shadow-[0_0_0_3px_#000000_inset] w-full px-6 py-2 mt-2 bg-transparent border border-black dark:border-white dark:text-white text-red-500 rounded-lg font-bold transform hover:-translate-y-1 transition duration-400"
+                onClick={() => {
+                  dispatch(clearUser());
+                  deleteToken();
+                  navigateTo("/login");
+                }}
+              >
+                Logout
+              </button>
+            )}
+          </div>
         </div>
       </div>
     </div>

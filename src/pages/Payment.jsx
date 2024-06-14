@@ -2,15 +2,10 @@
 
 import { WobbleCard } from "@/components/ui/wobble-card";
 import { useState } from "react";
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import { PaymentElement } from "@stripe/react-stripe-js";
+
+
 
 const Payment = () => {
-  const stripePromise = loadStripe("pk_test_qblFNYngBkEdjEZ16jxxoWSM");
-  const options = {
-    clientSecret: "{{CLIENT_SECRET}}",
-  };
   return (
     <div className="">
       <WobbleCard containerClassName="hidden md:block col-span-1 lg:col-span-3 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px] bg-[url('https://wallpaperaccess.com/full/796839.jpg')] bg-no-repeat bg-cover">
@@ -126,5 +121,4 @@ const Item = () => {
   );
 };
 
-// Make sure to call `loadStripe` outside of a component’s render to avoid
-// recreating the `Stripe` object on every render.
+

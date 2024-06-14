@@ -1,40 +1,72 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useState } from "react";
-
+import useForm from "@/hooks/useForm";
+import toast from "react-hot-toast";
+import { useRegisterMutation } from "@/redux/services/AppServices";
 
 const Registration = () => {
+  const navigateTo = useNavigate();
+  const initialValues = {
+    email: "",
+    password: "",
+    fullName: "",
+    address: "",
+    confirmPassword: "",
+  };
+  const { formData, handleChange, handleSubmit } = useForm(initialValues);
+  const [register, { isLoading, error }] = useRegisterMutation();
   const [phone, setPhone] = useState("");
+
+  const submitForm = async (data) => {
+    const { email, password, fullName, address, confirmPassword } = data;
+    const contact = phone;
+    if (password !== confirmPassword) return toast.error("password mismatch");
+    try {
+      toast.promise(register({ email, password, fullName, address, contact }), {
+        loading: "Registering...",
+        success: () => {
+          navigateTo("/login");
+          return "Registration successful!";
+        },
+        error: (err) => {
+          console.error("Failed to register:", err || error);
+          return "Failed to register. Please try again.";
+        },
+      });
+    } catch (err) {
+      console.error("Failed to register:", err || error);
+      toast.error("Failed to register. Please try again.", {
+        position: "top-right",
+        autoClose: 2000,
+      });
+    }
+  };
+
   return (
-    <div className="flex justify-center items-center h-full border-r-8 rounded-xl">
+    <div className="flex justify-center items-center h-full">
       <div className="flex flex-col p-6 rounded-md sm:p-10 bg-gray-50 text-gray-800 min-w-96 w-5/12 border-b-8 border-l-4 border-t-2 border-r rounded-xl">
         <div className="mb-8 text-center">
           <h1 className="my-3 text-4xl font-bold">Sign up</h1>
           <p className="text-sm text-gray-600">Sign up to access the app</p>
         </div>
-        <form noValidate="" action="" className="space-y-12">
+        <form onSubmit={handleSubmit(submitForm)} className="space-y-12">
           <div className="grid grid-cols-1 gap-5">
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label htmlFor="fullName" className="block mb-2 text-sm">
                 Full Name
               </label>
               <input
                 type="text"
-                name="email"
-                id="email"
-                placeholder="Doe Jon"
+                name="fullName"
+                id="fullName"
+                placeholder="John Doe"
+                value={formData.fullName}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
+                required
               />
-              <div
-                data-lastpass-icon-root=""
-                style={{
-                  position: "relative",
-                  height: "0px",
-                  width: "0px",
-                  float: "left",
-                }}
-              ></div>
             </div>
             <div>
               <label htmlFor="email" className="block mb-2 text-sm">
@@ -44,119 +76,88 @@ const Registration = () => {
                 type="email"
                 name="email"
                 id="email"
-                placeholder="leroy@jenkins.com"
+                placeholder="john.doe@example.com"
+                value={formData.email}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
+                required
               />
-              <div
-                data-lastpass-icon-root=""
-                style={{
-                  position: "relative",
-                  height: "0px",
-                  width: "0px",
-                  float: "left",
-                }}
-              ></div>
             </div>
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label htmlFor="phone" className="block mb-2 text-sm">
                 Contact Information
               </label>
               <PhoneInput
                 country={"us"}
                 value={phone}
                 onChange={(phone) => setPhone(phone)}
-              />
-              <div
-                data-lastpass-icon-root=""
-                style={{
-                  position: "relative",
-                  height: "0px",
-                  width: "0px",
-                  float: "left",
+                inputProps={{
+                  name: "phone",
+                  id: "phone",
+                  className:
+                    "w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800",
                 }}
-              ></div>
+              />
             </div>
             <div>
-              <label htmlFor="email" className="block mb-2 text-sm">
+              <label htmlFor="address" className="block mb-2 text-sm">
                 Address
               </label>
               <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="leroy@jenkins.com"
+                type="text"
+                name="address"
+                id="address"
+                placeholder="123 Main St, City, Country"
+                value={formData.address}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
+                required
               />
-              <div
-                data-lastpass-icon-root=""
-                style={{
-                  position: "relative",
-                  height: "0px",
-                  width: "0px",
-                  float: "left",
-                }}
-              ></div>
             </div>
             <div>
-              <div className="flex justify-between mb-2">
-                <label htmlFor="password" className="text-sm">
-                  Password
-                </label>
-              </div>
+              <label htmlFor="password" className="block mb-2 text-sm">
+                Password
+              </label>
               <input
                 type="password"
                 name="password"
                 id="password"
-                placeholder="*****"
+                placeholder="********"
+                value={formData.password}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
+                required
               />
-              <div
-                data-lastpass-icon-root=""
-                style={{
-                  position: "relative",
-                  height: "0px",
-                  width: "0px",
-                  float: "left",
-                }}
-              ></div>
             </div>
             <div>
-              <div className="flex justify-between mb-2">
-                <label htmlFor="password" className="text-sm">
-                  Conform Password
-                </label>
-              </div>
+              <label htmlFor="confirmPassword" className="block mb-2 text-sm">
+                Confirm Password
+              </label>
               <input
                 type="password"
-                name="password"
-                id="password"
-                placeholder="*****"
+                name="confirmPassword"
+                id="confirmPassword"
+                placeholder="********"
+                value={formData.confirmPassword}
+                onChange={handleChange}
                 className="w-full px-3 py-2 border rounded-md border-gray-300 bg-gray-50 text-gray-800"
+                required
               />
-              <div
-                data-lastpass-icon-root=""
-                style={{
-                  position: "relative",
-                  height: "0px",
-                  width: "0px",
-                  float: "left",
-                }}
-              ></div>
             </div>
           </div>
           <div className="space-y-2">
             <div>
-              <button className="shadow-[0_0_0_3px_#000000_inset] w-full px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 hover:bg-black hover:text-white">
-                Register
+              <button
+                type="submit"
+                className="shadow-[0_0_0_3px_#000000_inset] w-full px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 hover:bg-black hover:text-white"
+                disabled={isLoading}
+              >
+                {isLoading ? "Registering..." : "Register"}
               </button>
             </div>
             <p className="px-6 text-sm text-center text-gray-600">
-              Have an account yet?
-              <Link
-                to="/login"
-                href="#"
-                className="hover:underline text-blue-600"
-              >
+              Already have an account?{" "}
+              <Link to="/login" className="hover:underline text-blue-600">
                 Sign in
               </Link>
               .
