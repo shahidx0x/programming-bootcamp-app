@@ -1,3 +1,5 @@
+<img src="https://i.ibb.co/BZnV3kD/image.png"/>
+
 # Programming Bootcamp Platform
 
 Welcome to our Programming Bootcamp Platform, where you can join various coding bootcamps to enhance your skills and career prospects.
