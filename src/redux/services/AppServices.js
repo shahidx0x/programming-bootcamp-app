@@ -38,10 +38,11 @@ export const appServicesApi = createApi({
       }),
     }),
 
-    getUserProfile: builder.query({
-      query: () => "profile",
+    getEvents: builder.query({
+      query: () => "events",
     }),
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = appServicesApi;
+export const { useLoginMutation, useRegisterMutation, useGetEventsQuery } =
+  appServicesApi;

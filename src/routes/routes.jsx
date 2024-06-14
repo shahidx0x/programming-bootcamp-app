@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
         element: <Registration />,
       },
       {
-        path: "/event/details",
+        path: "/event/details/:headers",
         element: <EventDetails />,
       },
       {

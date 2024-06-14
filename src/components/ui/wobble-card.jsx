@@ -4,7 +4,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export const WobbleCard = ({ children, containerClassName, className }) => {
+export const WobbleCard = ({
+  children,
+  containerClassName,
+  className,
+  header_image,
+}) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
@@ -23,7 +28,6 @@ export const WobbleCard = ({ children, containerClassName, className }) => {
         setIsHovering(false);
         setMousePosition({ x: 0, y: 0 });
       }}
-
       className={cn(
         "mx-auto w-full bg-indigo-800  relative rounded-2xl overflow-hidden",
         containerClassName
@@ -34,6 +38,8 @@ export const WobbleCard = ({ children, containerClassName, className }) => {
         style={{
           boxShadow:
             "0 10px 32px rgba(34, 42, 53, 0.12), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.05), 0 4px 6px rgba(34, 42, 53, 0.08), 0 24px 108px rgba(47, 48, 55, 0.10)",
+          backgroundImage: `url(${header_image})`,
+          width: "100%",
         }}
       >
         <motion.div
