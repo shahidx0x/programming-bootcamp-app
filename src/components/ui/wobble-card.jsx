@@ -23,12 +23,7 @@ export const WobbleCard = ({ children, containerClassName, className }) => {
         setIsHovering(false);
         setMousePosition({ x: 0, y: 0 });
       }}
-      style={{
-        transform: isHovering
-          ? `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0) scale3d(1, 1, 1)`
-          : "translate3d(0px, 0px, 0) scale3d(1, 1, 1)",
-        transition: "transform 0.1s ease-out",
-      }}
+
       className={cn(
         "mx-auto w-full bg-indigo-800  relative rounded-2xl overflow-hidden",
         containerClassName
@@ -63,7 +58,7 @@ const Noise = () => {
     <div
       className="absolute inset-0 w-full h-full scale-[1.2] transform opacity-10 [mask-image:radial-gradient(#fff,transparent,75%)]"
       style={{
-        backgroundImage: "url(/noise.webp)",
+        backgroundImage: "url('https://ui.aceternity.com/noise.webp')",
         backgroundSize: "30%",
       }}
     ></div>

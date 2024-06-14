@@ -1,9 +1,10 @@
 import { WobbleCard } from "@/components/ui/wobble-card";
+import { Link } from "react-router-dom";
 
 export function EventDetails() {
   return (
     <div className="">
-      <WobbleCard containerClassName="col-span-1 lg:col-span-3 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px] bg-[url('https://wallpaperaccess.com/full/796839.jpg')] bg-no-repeat bg-cover">
+      <WobbleCard containerClassName="hidden md:block col-span-1 lg:col-span-3 min-h-[500px] lg:min-h-[600px] xl:min-h-[300px] bg-[url('https://wallpaperaccess.com/full/796839.jpg')] bg-no-repeat bg-cover">
         <div className="max-w-sm">
           <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
             Signup for blazing-fast cutting-edge state of the art Gippity AI
@@ -15,10 +16,10 @@ export function EventDetails() {
           </p>
         </div>
       </WobbleCard>
-      <div className="grid gap-5 grid-flow-col mt-5 ">
+      <div className="grid gap-5 xl:grid-flow-col mt-5 ">
         <WobbleCard
-          className="overflow-scroll scrollbar-hide"
-          containerClassName="2xl:col-span-12 h-[40rem] bg-white border-2 border-indigo-500"
+          className="md:overflow-scroll scrollbar-hide "
+          containerClassName="2xl:col-span-12 h-full md:h-[40rem] bg-white border-2 border-indigo-500 bg-grid-black/[0.1]"
         >
           <div className="max-w-4xl">
             <h2 className="text-6xl font-bold ">Programming Bootcamp</h2>
@@ -154,16 +155,62 @@ export function EventDetails() {
             </div>
           </div>
         </WobbleCard>
-        <WobbleCard containerClassName="">
-          <div>
-            <h2 className="max-w-sm md:max-w-lg  text-left text-balance text-base md:text-xl lg:text-3xl font-semibold tracking-[-0.015em] text-white">
-              Signup for blazing-fast cutting-edge state of the art Gippity AI
-              wrapper today!
-            </h2>
-            <p className="mt-4 max-w-[26rem] text-left  text-base/6 text-neutral-200">
-              With over 100,000 mothly active bot users, Gippity AI is the most
-              popular AI platform for developers.
-            </p>
+        <WobbleCard containerClassName="bg-white h-[40rem] border-purple-500 border-2 bg-grid-black/[0.1]">
+          <div className="p-2 rounded-lg ml-4">
+            <h3 className=""></h3>
+            <button className=" text-3xl font-semibold  mb-4 px-8 py-0.5  border-2 border-black dark:border-white uppercase bg-white text-black transition duration-200 shadow-[1px_1px_rgba(0,0,0),2px_2px_rgba(0,0,0),3px_3px_rgba(0,0,0),4px_4px_rgba(0,0,0),5px_5px_0px_0px_rgba(0,0,0)] dark:shadow-[1px_1px_rgba(255,255,255),2px_2px_rgba(255,255,255),3px_3px_rgba(255,255,255),4px_4px_rgba(255,255,255),5px_5px_0px_0px_rgba(255,255,255)] ">
+              Event Details
+            </button>
+
+            <div className="mb-6">
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Event Type:</span> One-Day
+                Intensive Programming Bootcamp
+              </p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Event Date:</span> [Insert Date
+                Here]
+              </p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Event Time:</span> 9:00 AM -
+                6:00 PM
+              </p>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Registration Fee:</span> $99
+              </p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Total Seats:</span> 50
+              </p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Seats Booked:</span> 30
+              </p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Remaining Seats:</span> 20
+              </p>
+            </div>
+
+            <div>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Total Price:</span> $99 per
+                participant
+              </p>
+              <p className="text-gray-700 mb-2">
+                <span className="font-semibold">Payment Methods:</span> Credit
+                Card, PayPal
+              </p>
+              <p className="text-gray-700">
+                <span className="font-semibold">Refund Policy:</span> Full
+                refund available up to 7 days before the event.
+              </p>
+            </div>
+            <Link to="/payments" className="mt-2">
+              <button className="px-12 w-full py-4 rounded-full bg-[#1ED760] font-bold text-white tracking-widest uppercase transform hover:scale-105 hover:bg-[#21e065] transition-colors duration-200">
+                Book Now
+              </button>
+            </Link>
           </div>
         </WobbleCard>
       </div>

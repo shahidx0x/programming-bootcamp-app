@@ -1,6 +1,7 @@
 import MainLayout from "@/layouts/MainLayout";
 import { EventDetails } from "@/pages/EventDetails";
 import Home from "@/pages/Home";
+import Payment from "@/pages/Payment";
 
 import Login from "@/shared/Login";
 import Registration from "@/shared/Registration";
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: "/event/details",
         element: <EventDetails />,
+      },
+      {
+        path: "/payments",
+        element: <Payment />,
       },
     ],
   },
